@@ -1,0 +1,12 @@
+<div class="example-container">
+  <mat-form-field>
+    <textarea matInput placeholder="What's on your mind?" [(ngModel)]="content"></textarea>
+  </mat-form-field>
+
+  <div class="example-button-row">
+    <button mat-flat-button color="primary" (click)="share()">
+      Send
+    </button>
+  </div>
+</div>
+
