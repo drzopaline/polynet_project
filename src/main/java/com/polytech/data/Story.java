@@ -11,6 +11,10 @@ public class Story {
         return content;
     }
 
+    public String setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "{" + "\"content\":\"" + content + "\"}";

@@ -6,6 +6,8 @@ import java.util.List;
 public class InMemoryStoryRepository implements StoryRepository {
     List<Story> database = new ArrayList();
 
+    private ArrayList<Story> memoryList;
+
     public void save(Story story) {
         // INSERT SQL
         database.add(story);

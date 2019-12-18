@@ -28,16 +28,9 @@ public class StoryController extends HttpServlet {
 
     PublicationService publicationService;
 
-    public StoryController() {
-        HikariConfig configuration = new HikariConfig();
-        configuration.setJdbcUrl("jdbc:mysql://eu-cdbr-west-02.cleardb.net:3306/heroku_de596f09f064174");
-        configuration.setPassword("ac861f9e");
-        configuration.setUsername("ba01d4f7765dc9");
-        configuration.setMaximumPoolSize(2);
-        DataSource datasource = new HikariDataSource(configuration);
-        JdbcStoryRepositoryImpl storyRepository = new JdbcStoryRepositoryImpl(datasource);
-        publicationService = new PublicationService(storyRepository);
-
+    @Autowired
+    public StoryController(PublicationService publicationService) {
+        this.publicationService=publicationService;
     }
 
     @PostMapping("/stories")
