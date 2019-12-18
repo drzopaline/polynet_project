@@ -4,7 +4,7 @@
   </mat-form-field>
 
   <div class="example-button-row">
-    <button mat-flat-button color="primary" (click)="share()">
+    <button mat-flat-button color="primary" [disabled]="!content" (click)="share()">
       Send
     </button>
   </div>

@@ -1,3 +1,13 @@
-<mat-list role="list">
-  <mat-list-item *ngFor="let story of stories" role="listitem">{{ story.content }}</mat-list-item>
-</mat-list>
+<div *ngFor="let story of stories; index as i">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{ story.content}}</mat-card-title>
+      <mat-card-subtitle>Message</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions class="cards">
+      <button mat-button>LIKE</button>
+      <button mat-button>DISLIKE</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
