@@ -42,7 +42,7 @@ public class JdbcStoryRepositoryImpl implements StoryRepository {
                 Story story = new Story(resultSet.getString("content"));
                 stories.add(story);
             }
-            preparedStatement.executeUpdate();
+            //preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,4 +1,14 @@
 package com.polytech.config;
+import com.polytech.business.PublicationService;
+import com.polytech.data.JdbcStoryRepositoryImpl;
+import com.polytech.data.StoryRepository;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class AppConfig {
@@ -19,10 +29,12 @@ public class AppConfig {
         return datasource;
     }
 
+    @Bean
     StoryRepository storyRepository(){
-        return new JdbcStoryRepository(dataSource());
+        return new JdbcStoryRepositoryImpl(dataSource());
     }
 
+    @Bean
     PublicationService publicationService(){
         return new PublicationService(storyRepository());
     }

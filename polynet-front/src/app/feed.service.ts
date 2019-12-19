@@ -11,13 +11,13 @@ export class FeedService {
 
   constructor(private http: HttpClient) { }
   share(content:string ){
-    return this.http.post("http://localhost:8888/stories", content).toPromise().then(()=>{
+    return this.http.post("http://localhost:8080/stories", content).toPromise().then(()=>{
       const story={content};
       this.stories.unshift(story)
     });
   }
  fetch():Promise<any>{
-    return this.http.get<Story[]>("http://localhost:8888/stories").toPromise().then((response)=>{
+    return this.http.get<Story[]>("http://localhost:8080/stories").toPromise().then((response)=>{
 
      this.stories = response
 

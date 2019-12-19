@@ -7,6 +7,7 @@ import com.polytech.data.Story;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
@@ -30,7 +31,7 @@ public class StoryController extends HttpServlet {
 
     @Autowired
     public StoryController(PublicationService publicationService) {
-        this.publicationService=publicationService;
+        this.publicationService = publicationService;
     }
 
     @PostMapping("/stories")

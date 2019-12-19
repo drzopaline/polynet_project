@@ -11,9 +11,7 @@ public class Story {
         return content;
     }
 
-    public String setContent(String content) {
-        this.content = content;
-    }
+    public void setContent(String content) { this.content = content; }
 
     @Override
     public String toString() {
