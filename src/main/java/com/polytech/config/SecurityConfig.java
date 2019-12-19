@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.servlet.ServletException;
@@ -41,15 +42,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                //.mvcMatchers("/","/about", "/contact").permitAll()
+                .mvcMatchers("/","/about", "/login").permitAll()
                 //.mvcMatchers("/admin").hasRole("ADMIN")
                 .mvcMatchers(HttpMethod.POST,"/stories").authenticated()
                 .mvcMatchers(HttpMethod.GET,"/stories").permitAll()
                 .anyRequest().authenticated()
-        .and().formLogin()
-                .successHandler((req, response, authentication) -> response.setStatus(200))
-                .failureHandler((req,res,exception )->res.setStatus(401))
-        .and().logout()
-        .and().csrf().disable();
+        .and().formLogin().successHandler(getAuthenticationSuccessHandler())
+                .failureHandler(getAuthenticationFailureHandler())
+                .and().logout()
+                .and().csrf().disable();
+    }
+
+    private AuthenticationFailureHandler getAuthenticationFailureHandler() {
+        return (req,res,exception )->{
+            res.setStatus(401);
+            res.setHeader("Access-Control-Allow-Origin","*");
+        };
+    }
+
+    private AuthenticationSuccessHandler getAuthenticationSuccessHandler() {
+        return (req, response, authentication) -> {
+            response.setHeader("Access-Control-Allow-Origin","*");
+            response.setStatus(200);
+        };
     }
 }

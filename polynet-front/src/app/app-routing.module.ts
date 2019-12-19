@@ -5,7 +5,7 @@ import {StoryPublisherComponent} from "./story-publisher/story-publisher.compone
 
 
 const routes: Routes = [
-  {path:'',component:LoginComponent},
+  {path:'login',component:LoginComponent},
   {path:'stories',component:StoryPublisherComponent}
 ];
 

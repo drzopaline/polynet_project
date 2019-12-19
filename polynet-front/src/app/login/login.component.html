@@ -1,7 +1,24 @@
-<form>
+<mat-card class="example-card">
 
-  <p *ngIf="error" class="error">BAD CREDENTIALS</p>
-  <label for="username" ></label><input id="username" type="text" [(ngModel)]="username"/>
-  <label for="password" ></label><input id="password" type="text" [(ngModel)]="username"/>
-  <button (click)="login"></button>
-</form>
+  <form class="example-container">
+
+
+
+    <mat-form-field>
+      <input matInput [ngClass]="{'invalid': error}" for="username" id="username" type="text" placeholder="Username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+
+
+    <mat-form-field>
+
+      <input matInput [ngClass]="{'invalid': error}" for="password" type="password" id="password" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"/>
+    </mat-form-field>
+    <p *ngIf="error" class="error invalid">Bad credentials</p>
+    <div class="example-button-row">
+      <button mat-flat-button color="primary" (click)="login()">
+        Send
+      </button>
+    </div>
+  </form>
+
+</mat-card>
