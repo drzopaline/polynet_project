@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {HttpClient, HttpHeaderResponse, HttpHeaders, HttpParams} from "@angular/common/http";
+import {AuthService} from "../auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,27 +13,26 @@ export class LoginComponent implements OnInit {
   username:string;
   password:string;
   error=false;
-  constructor(private httpClient: HttpClient) { }
+
+  constructor(private authService:AuthService, private router:Router) { }
 
   ngOnInit() {
-    this.error=false;
   }
 
   login(){
-    const headers = new HttpHeaders();
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    this.authService.login(this.username, this.password).then(()=>{
 
-    const body=new HttpParams()
-      .set('username',this.username)
-      .set('password', this.password);
-
-    const  url='http://localhost:8080/login';
-    this.httpClient.post(url, body, {headers}).toPromise().then(()=>{
-      console.log("authenticated");
       this.error=false;
-    }, () => {
-      this.error=true
-    })
+      this.router.navigate(["/"]);
+
+
+      if (this.authService.isConnected()) {
+        this.error = false;
+      } else {
+        this.error = true;
+      }
+    }).catch(() => {
+    });
   }
 
 

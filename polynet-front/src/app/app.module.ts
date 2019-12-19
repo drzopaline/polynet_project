@@ -17,6 +17,7 @@ import { FeedComponent } from './feed/feed.component';
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
 import { LoginComponent } from './login/login.component';
+import { WallComponent } from './wall/wall.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     MenuComponent,
     StoryPublisherComponent,
     FeedComponent,
-    LoginComponent
+    LoginComponent,
+    WallComponent
   ],
   imports: [
     BrowserModule,
