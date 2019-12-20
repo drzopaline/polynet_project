@@ -15,18 +15,17 @@ export class FeedService {
   constructor(private http: HttpClient) { }
   share(content:string,username:string){
     // @ts-ignore
-    // const story={
-    //   content,
-    //   username
-    // };
+    const story={
+      content,
+      username
+    };
     //
-    const story= new StoryC(content,username);
+    //const story= new StoryC(content,username);
 
-    let options = {
-      headers: new HttpHeaders().set('Content-Type', "application/x-www-form-urlencoded"),
-      withCredentials: true
-    }
-    return this.http.post("http://localhost:8080/stories", story,options).toPromise().then(()=>{
+    return this.http.post("http://localhost:8080/stories", story,{
+      withCredentials: true,
+      headers:{'Content-Type': 'application/json'}
+    }).toPromise().then(()=>{
       //const story={content};
       this.stories.unshift(story);
     });

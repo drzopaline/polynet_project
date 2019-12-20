@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -35,8 +36,8 @@ public class StoryController extends HttpServlet {
     }
 
     @PostMapping("/stories")
-    public void share(@RequestBody String content,@RequestBody String username) {
-        publicationService.share(new Story(content,username));
+    public void share(@RequestBody Story story) {
+        publicationService.share(story);
     }
 
     @GetMapping("/stories")

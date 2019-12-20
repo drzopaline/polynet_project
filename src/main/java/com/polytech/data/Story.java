@@ -1,9 +1,6 @@
 package com.polytech.data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -12,6 +9,7 @@ public class Story {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @Column(name = "content")
@@ -19,6 +17,9 @@ public class Story {
 
     @Column(name = "username")
     String username;
+
+    public Story() {
+    }
 
     public Story(String content, String username) {
         this.content = content;
