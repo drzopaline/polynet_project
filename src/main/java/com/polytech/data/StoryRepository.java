@@ -1,9 +1,12 @@
 package com.polytech.data;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-public interface StoryRepository {
-    void save(Story story);
+@Repository
+public interface StoryRepository extends JpaRepository<Story,Long> {
 
-    List<Story> findAll();
+
 }

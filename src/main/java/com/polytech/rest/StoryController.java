@@ -2,7 +2,7 @@ package com.polytech.rest;
 
 import com.polytech.business.PublicationService;
 import com.polytech.data.InMemoryStoryRepository;
-import com.polytech.data.JdbcStoryRepositoryImpl;
+//import com.polytech.data.JdbcStoryRepositoryImpl;
 import com.polytech.data.Story;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*",allowCredentials = "true")
 public class StoryController extends HttpServlet {
 
 
@@ -35,8 +35,8 @@ public class StoryController extends HttpServlet {
     }
 
     @PostMapping("/stories")
-    public void share(@RequestBody String content) {
-        publicationService.share(new Story(content));
+    public void share(@RequestBody String content,@RequestBody String username) {
+        publicationService.share(new Story(content,username));
     }
 
     @GetMapping("/stories")

@@ -8,10 +8,15 @@ import {Router} from "@angular/router";
 export class AuthService {
 
   connected=false;
+  username:string;
   constructor(private httpClient: HttpClient,private router:Router) { }
 
   isConnected(){
     return this.connected;
+  }
+
+  getUsername(){
+    return this.username;
   }
 
   logout(){
@@ -20,7 +25,7 @@ export class AuthService {
   }
 
   login(username:string, password:string){
-
+    this.username=username;
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -29,10 +34,10 @@ export class AuthService {
       .set('password', password);
 
     const  url='http://localhost:8080/login';
-    return (this.httpClient.post(url, body, {headers}).toPromise().then(()=>{
+    return (this.httpClient.post(url, body, {headers,withCredentials:true}).toPromise().then(()=>{
       this.connected=true;
-
     }).catch(()=>{
+      console.log("test");
       this.connected=false;
     }))
   }

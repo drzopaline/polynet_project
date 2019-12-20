@@ -2,7 +2,7 @@
   <mat-toolbar-row>
     <span>Polynet</span>
     <span class="example-spacer"></span>
-    <!--<button mat-button>Story publisher</button>-->
-    <button mat-button (click)="logout()">Log out</button>
+    <span *ngIf="connected" class="welcome">Welcome {{username}}</span>
+    <button mat-button *ngIf="connected" (click)="logout()">Log out</button>
   </mat-toolbar-row>
 </mat-toolbar>

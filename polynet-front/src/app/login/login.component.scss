@@ -21,11 +21,23 @@
   margin: 100px 30% 100px 30%;
 }
 
-.invalid, .invalid::placeholder{
-  color: red;
+.invalid{
+  color: red!important;
 }
 
 .error{
-  font-size: 10px;
-  color:red;
+  font-size: 14px;
+  background-color: red;
+  color:white;
+
+  padding: 7px 12px;
+  border-radius: 16px;
+  align-items: center;
+  display: inline-flex;
+  min-height: 32px;
+  height: 1px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-weight: 500;
 }

@@ -1,6 +1,6 @@
 package com.polytech.config;
 import com.polytech.business.PublicationService;
-import com.polytech.data.JdbcStoryRepositoryImpl;
+//import com.polytech.data.JdbcStoryRepositoryImpl;
 import com.polytech.data.StoryRepository;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -29,13 +29,10 @@ public class AppConfig {
         return datasource;
     }
 
-    @Bean
-    StoryRepository storyRepository(){
-        return new JdbcStoryRepositoryImpl(dataSource());
-    }
+//    @Bean
+//    StoryRepository storyRepository(){
+//        return new JdbcStoryRepositoryImpl(dataSource());
+//    }
 
-    @Bean
-    PublicationService publicationService(){
-        return new PublicationService(storyRepository());
-    }
+
 }
